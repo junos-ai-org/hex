@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.08);
+        }
+        
+        header {
+            background: white;
+            padding: 60px 50px 40px 50px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            line-height: 1.3;
+        }
+        
+        .authors {
+            text-align: center;
+            font-size: 1.05em;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .authors a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .authors a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .affiliations {
+            text-align: center;
+            font-size: 0.95em;
+            color: #5a6c7d;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .affiliations a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .affiliations a:hover {
+            text-decoration: underline;
+        }
+        
+        .conference {
+            text-align: center;
+            font-size: 1em;
+            color: #34495e;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 24px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 2px solid #3498db;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .content {
+            padding: 50px 50px 60px 50px;
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        
+        .abstract {
+            font-size: 1.05em;
+            line-height: 1.8;
+            text-align: justify;
+            color: #34495e;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .figure {
+            margin: 40px 0;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .figure img {
+            width: 100%;
+            display: block;
+        }
+        
+        .figure-caption {
+            padding: 20px;
+            background: #f8f9fa;
+            font-size: 0.95em;
+            color: #5a6c7d;
+            line-height: 1.6;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .figure-caption strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .citation-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        
+        .key-points {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .key-points ul {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .key-points li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .key-points h3 {
+            color: #1976D2;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+        
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.95em;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .content, header {
+                padding: 30px 25px;
+            }
+            
+            .abstract {
+                padding: 20px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts</h1>
+            
+            <div class="authors">
+                <a href="#">Jihoon Lee</a><sup>1</sup>,
+                <a href="#">Hoyeon Moon</a><sup>1</sup>,
+                <a href="#">Kevin Zhai</a><sup>5</sup>,
+                <a href="#">Arun Kumar Chithanar</a>,
+                <a href="#">Anit Kumar Sahu</a><sup>2</sup>,
+                <a href="#">Soummya Kar</a><sup>3</sup>,
+                <a href="#">Chul Lee</a>,
+                <a href="#">Souradip Chakraborty</a><sup>4</sup>,
+                <a href="#">Amrit Singh Bedi</a><sup>5</sup>
+            </div>
+            
+            <div class="affiliations">
+                <sup>1</sup><a href="https://www.yonsei.ac.kr/en_sc/">Yonsei University</a>
+                <sup>2</sup><a href="https://www.oracle.com/">Oracle</a>
+                <sup>3</sup><a href="https://www.cmu.edu/">CMU</a>
+                <sup>4</sup><a href="https://www.umd.edu/">UMD</a>
+                <sup>5</sup><a href="https://www.ucf.edu/">UCF</a>
+            </div>
+            
+            <div class="conference">
+                Under Submission
+            </div>
+            
+            <div class="links">
+                <a href="#" class="btn">📄 Paper</a>
+                <a href="https://github.com/junos-ai-org/hex" class="btn">💻 Code</a>
+                <a href="#" class="btn">📊 Dataset</a>
+                <a href="#" class="btn">🎥 Video</a>
+            </div>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>Abstract</h2>
+                <div class="abstract">
+                    [Your paper abstract goes here. Provide a comprehensive and detailed summary of your work. Include the problem statement, your approach and methodology, key innovations, experimental setup, main results, and contributions to the field. This should give readers a complete understanding of what your paper is about and why it matters.]
+                </div>
+            </section>
+
+            <section>
+                <div class="key-points">
+                    <h3>Key Contributions</h3>
+                    <ul>
+                        <li><strong>Contribution 1:</strong> Brief description of your first main contribution or finding.</li>
+                        <li><strong>Contribution 2:</strong> Brief description of your second main contribution or finding.</li>
+                        <li><strong>Contribution 3:</strong> Brief description of your third main contribution or finding.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Main Results</h2>
+                
+                <div class="figure">
+                    <img src="assets/figure1.png" alt="Main Result Figure 1">
+                    <div class="figure-caption">
+                        <strong>Figure 1: Main Result Title.</strong> Detailed description of what this figure shows, including key observations, experimental conditions, and insights. Explain the axes, what each line or data point represents, and what conclusions can be drawn from this visualization.
+                    </div>
+                </div>
+                
+                <div class="figure">
+                    <img src="assets/figure2.png" alt="Comparison Results">
+                    <div class="figure-caption">
+                        <strong>Figure 2: Comparison Results.</strong> Description of the comparison shown in this figure. Explain what is being compared, the baseline methods, your proposed approach, and the key takeaways from the comparison.
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Method Overview</h2>
+                <p>
+                    [Provide a high-level overview of your method here. Explain the intuition behind your approach, the main components of your system, and how they work together. You can include architectural diagrams or algorithmic descriptions.]
+                </p>
+                
+                <div class="figure">
+                    <img src="assets/method.png" alt="Method Overview">
+                    <div class="figure-caption">
+                        <strong>Figure 3: Method Architecture.</strong> Overview of the proposed method showing the main components and their interactions.
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Getting Started</h2>
+                <p>Clone the repository and install dependencies:</p>
+                <pre><code># Clone the repository
+git clone https://github.com/junos-ai-org/hex.git
+cd hex
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run demo
+python demo.py</code></pre>
+            </section>
+
+            <section>
+                <h2>Citation</h2>
+                <p>If you find this work useful in your research, please consider citing:</p>
+                <div class="citation-box">@article{lee2025hex,
+  title={Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts},
+  author={Lee, Jihoon and Moon, Hoyeon and Zhai, Kevin and Chithanar, Arun Kumar and Sahu, Anit Kumar and Kar, Soummya and Lee, Chul and Chakraborty, Souradip and Bedi, Amrit Singh},
+  journal={Under Submission},
+  year={2025}
+}</div>
+            </section>
+        </div>
+
+        <footer>
+            <p><strong>junos-ai-org</strong></p>
+            <p>Test-Time Scaling in Diffusion LLMs</p>
+            <p style="margin-top: 15px;">© 2025 junos-ai-org. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
