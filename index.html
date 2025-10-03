@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts</title>
+  <!-- Tailwind CDN with useful plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ["Inter var", "system-ui", "Segoe UI", "Helvetica", "Arial"],
+            body: ["Georgia", "Times New Roman", "serif"],
+            mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+          },
+          boxShadow: {
+            soft: "0 10px 30px rgba(2,6,23,0.06)",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <!-- Page container -->
+  <div class="mx-auto max-w-4xl">
+    <!-- Header -->
+    <header class="relative isolate overflow-hidden rounded-b-3xl bg-gradient-to-b from-slate-900 to-slate-800 text-white shadow-soft">
+      <div class="px-6 py-12 sm:px-10 sm:py-16">
+        <h1 class="text-center font-heading text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+          Test-Time Scaling in Diffusion LLMs via Hidden Semi‑Autoregressive Experts
+        </h1>
+        <div class="mt-6 space-y-2 text-center text-sm/6 text-slate-300">
+          <p class="space-x-1">
+            <a href="#" class="hover:underline">Jihoon Lee</a><sup>1</sup>,
+            <a href="#" class="hover:underline">Hoyeon Moon</a><sup>1</sup>,
+            <a href="#" class="hover:underline">Kevin Zhai</a><sup>5</sup>,
+            <a href="#" class="hover:underline">Arun Kumar Chithanar</a>,
+            <a href="#" class="hover:underline">Anit Kumar Sahu</a><sup>2</sup>,
+            <a href="#" class="hover:underline">Soummya Kar</a><sup>3</sup>,
+            <a href="#" class="hover:underline">Chul Lee</a>,
+            <a href="#" class="hover:underline">Souradip Chakraborty</a><sup>4</sup>,
+            <a href="#" class="hover:underline">Amrit Singh Bedi</a><sup>5</sup>
+          </p>
+          <p class="text-slate-400">
+            <sup>1</sup><a class="hover:underline" href="https://www.yonsei.ac.kr/en_sc/">Yonsei University</a>
+            <sup>2</sup><a class="hover:underline" href="https://www.oracle.com/">Oracle</a>
+            <sup>3</sup><a class="hover:underline" href="https://www.cmu.edu/">CMU</a>
+            <sup>4</sup><a class="hover:underline" href="https://www.umd.edu/">UMD</a>
+            <sup>5</sup><a class="hover:underline" href="https://www.ucf.edu/">UCF</a>
+          </p>
+          <p>
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs uppercase tracking-wide text-slate-200 backdrop-blur">
+              Under Submission
+            </span>
+          </p>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="#" class="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-soft backdrop-blur transition hover:bg-white/20">
+            <span>📄 Paper</span>
+            <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
+          </a>
+          <a href="https://github.com/junos-ai-org/hex" class="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-emerald-600">
+            <span>💻 Code</span>
+            <svg class="h-4 w-4 opacity-90 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
+          </a>
+          <a href="#" class="group inline-flex items-center gap-2 rounded-xl bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-indigo-600">
+            <span>📊 Dataset</span>
+            <svg class="h-4 w-4 opacity-90 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
+          </a>
+          <a href="#" class="group inline-flex items-center gap-2 rounded-xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-rose-600">
+            <span>🎥 Video</span>
+            <svg class="h-4 w-4 opacity-90 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <main class="-mt-6 px-4 sm:px-6">
+      <div class="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-soft sm:p-8">
+        <!-- Abstract -->
+        <section class="mb-10">
+          <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Abstract</h2>
+          <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 text-[1.02rem] leading-8 text-slate-700">
+            [Your paper abstract goes here. Provide a comprehensive and detailed summary of your work. Include the problem statement, your approach and methodology, key innovations, experimental setup, main results, and contributions to the field. This should give readers a complete understanding of what your paper is about and why it matters.]
+          </div>
+        </section>
+
+        <!-- Key contributions -->
+        <section class="mb-10">
+          <div class="rounded-2xl border border-blue-100 bg-blue-50 p-5 sm:p-6">
+            <div class="flex items-center gap-2">
+              <h3 class="font-heading text-lg font-semibold text-blue-900">Key Contributions</h3>
+              <span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-blue-700">TL;DR</span>
+            </div>
+            <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
+              <li><span class="font-semibold">Contribution 1:</span> Brief description of your first main contribution or finding.</li>
+              <li><span class="font-semibold">Contribution 2:</span> Brief description of your second main contribution or finding.</li>
+              <li><span class="font-semibold">Contribution 3:</span> Brief description of your third main contribution or finding.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Main Results -->
+        <section class="mb-10">
+          <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Main Results</h2>
+          <div class="mt-6 grid gap-6">
+            <!-- Figure 1 -->
+            <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+              <img src="assets/figure1.png" alt="Main Result Figure 1" class="h-auto w-full" />
+              <figcaption class="border-t border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                <span class="font-semibold text-slate-800">Figure 1: Main Result Title.</span>
+                Detailed description of what this figure shows, including key observations, experimental conditions, and insights. Explain the axes, what each line or data point represents, and what conclusions can be drawn from this visualization.
+              </figcaption>
+            </figure>
+            <!-- Figure 2 -->
+            <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+              <img src="assets/figure2.png" alt="Comparison Results" class="h-auto w-full" />
+              <figcaption class="border-t border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                <span class="font-semibold text-slate-800">Figure 2: Comparison Results.</span>
+                Description of the comparison shown in this figure. Explain what is being compared, the baseline methods, your proposed approach, and the key takeaways from the comparison.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- Method Overview -->
+        <section class="mb-10">
+          <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Method Overview</h2>
+          <p class="prose prose-slate mt-4">
+            [Provide a high-level overview of your method here. Explain the intuition behind your approach, the main components of your system, and how they work together. You can include architectural diagrams or algorithmic descriptions.]
+          </p>
+          <figure class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+            <img src="assets/method.png" alt="Method Overview" class="h-auto w-full" />
+            <figcaption class="border-t border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+              <span class="font-semibold text-slate-800">Figure 3: Method Architecture.</span>
+              Overview of the proposed method showing the main components and their interactions.
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- Getting Started -->
+        <section class="mb-10">
+          <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Getting Started</h2>
+          <p class="mt-3 text-slate-700">Clone the repository and install dependencies:</p>
+          <pre class="mt-4 overflow-x-auto rounded-xl bg-slate-900 p-4 text-[13px] text-slate-100"><code class="font-mono"># Clone the repository
+git clone https://github.com/junos-ai-org/hex.git
+cd hex
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run demo
+python demo.py</code></pre>
+        </section>
+
+        <!-- Citation -->
+        <section class="mb-2">
+          <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Citation</h2>
+          <p class="mt-3 text-slate-700">If you find this work useful in your research, please consider citing:</p>
+          <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <pre class="overflow-x-auto text-[13px] leading-6 text-slate-800"><code class="font-mono">@article{lee2025hex,
+  title={Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts},
+  author={Lee, Jihoon and Moon, Hoyeon and Zhai, Kevin and Chithanar, Arun Kumar and Sahu, Anit Kumar and Kar, Soummya and Lee, Chul and Chakraborty, Souradip and Bedi, Amrit Singh},
+  journal={Under Submission},
+  year={2025}
+}</code></pre>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mx-auto my-8 max-w-3xl rounded-2xl bg-slate-900 px-6 py-6 text-center text-sm text-slate-300">
+        <p>Test-Time Scaling in Diffusion LLMs</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
