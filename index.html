@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts</title>
+  <title>Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts (HEX)</title>
   <!-- Tailwind CDN with useful plugins -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
   <script>
@@ -30,7 +30,7 @@
     <header class="relative isolate overflow-hidden rounded-b-3xl bg-gradient-to-b from-slate-900 to-slate-800 text-white shadow-soft">
       <div class="px-6 py-12 sm:px-10 sm:py-16">
         <h1 class="text-center font-heading text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-          Test-Time Scaling in Diffusion LLMs via Hidden Semi‑Autoregressive Experts
+          Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts (HEX)
         </h1>
         <div class="mt-6 space-y-2 text-center text-sm/6 text-slate-300">
           <p class="space-x-1">
@@ -55,8 +55,8 @@
 
         <!-- Action buttons -->
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href="#" class="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-soft backdrop-blur transition hover:bg-white/20">
-            <span>📄 Paper</span>
+          <a href="https://junos-ai-org.github.io/Test-Time-Scaling/" class="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-soft backdrop-blur transition hover:bg-white/20">
+            <span>📄 Paper / Project Page</span>
             <svg class="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
           </a>
           <a href="https://github.com/junos-ai-org/hex" class="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-emerald-600">
@@ -64,11 +64,11 @@
             <svg class="h-4 w-4 opacity-90 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
           </a>
           <a href="#" class="group inline-flex items-center gap-2 rounded-xl bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-indigo-600">
-            <span>📊 Dataset</span>
+            <span>📊 Data / Eval Scripts</span>
             <svg class="h-4 w-4 opacity-90 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
           </a>
           <a href="#" class="group inline-flex items-center gap-2 rounded-xl bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-rose-600">
-            <span>🎥 Video</span>
+            <span>🎥 Video (coming soon)</span>
             <svg class="h-4 w-4 opacity-90 transition group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor"><path d="M12.293 3.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414L9.414 17H6v-3.414l8.293-8.293z"/></svg>
           </a>
         </div>
@@ -82,7 +82,7 @@
         <section class="mb-10">
           <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Abstract</h2>
           <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 text-[1.02rem] leading-8 text-slate-700">
-            [Your paper abstract goes here. Provide a comprehensive and detailed summary of your work. Include the problem statement, your approach and methodology, key innovations, experimental setup, main results, and contributions to the field. This should give readers a complete understanding of what your paper is about and why it matters.]
+            Diffusion-based large language models (dLLMs) decode by iteratively masking/unmasking tokens, making the <em>generation order</em> a key degree of freedom at inference. We show that dLLMs trained on text implicitly learn a <strong>mixture of semi-autoregressive experts</strong>—different decoding block sizes/orders activate different specialized behaviors. Committing to a single fixed schedule collapses performance, especially on reasoning tasks. We propose <strong>HEX</strong>, a <strong>training-free</strong> inference method that ensembles across diverse semi-autoregressive block schedules and aggregates answers via majority vote. On LLaDA-8B-Instruct, HEX sets a new test-time scaling paradigm for dLLMs, improving GSM8K from <strong>24.72%</strong> (top-K margin) and <strong>50.87%</strong> (random) to <strong>88.10%</strong>, surpassing GRPO-fine-tuned d1 on GSM8K, MATH, and ARC-C—<em>without</em> any additional training. :contentReference[oaicite:1]{index=1}
           </div>
         </section>
 
@@ -94,9 +94,9 @@
               <span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-blue-700">TL;DR</span>
             </div>
             <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
-              <li><span class="font-semibold">Contribution 1:</span> Brief description of your first main contribution or finding.</li>
-              <li><span class="font-semibold">Contribution 2:</span> Brief description of your second main contribution or finding.</li>
-              <li><span class="font-semibold">Contribution 3:</span> Brief description of your third main contribution or finding.</li>
+              <li><span class="font-semibold">Limitation Analysis:</span> We identify why common confidence-based schedules (e.g., top-K margin) can catastrophically fail in dLLMs on reasoning tasks (e.g., [AfterEoT] collapse), revealing sensitivity to decoding order. :contentReference[oaicite:2]{index=2}</li>
+              <li><span class="font-semibold">HEX—Test-time Scaling via Hidden Experts:</span> We uncover and exploit a <em>latent mixture</em> of semi-AR experts by marginalizing over block schedules and aggregating via majority vote—introducing a new compute-accuracy knob at inference time. :contentReference[oaicite:3]{index=3}</li>
+              <li><span class="font-semibold">State-of-the-Art, Training-Free:</span> HEX achieves up to <strong>3.56×</strong> gains and surpasses GRPO on GSM8K (88.10%), MATH (40.00%), ARC-C (87.80%), and improves TruthfulQA (57.46%)—all without retraining. :contentReference[oaicite:4]{index=4}</li>
             </ul>
           </div>
         </section>
@@ -107,20 +107,36 @@
           <div class="mt-6 grid gap-6">
             <!-- Figure 1 -->
             <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-              <img src="assets/figure1.png" alt="Main Result Figure 1" class="h-auto w-full" />
+              <img src="assets/figure1.png" alt="HEX overview and headline comparison" class="h-auto w-full" />
               <figcaption class="border-t border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-                <span class="font-semibold text-slate-800">Figure 1: Main Result Title.</span>
-                Detailed description of what this figure shows, including key observations, experimental conditions, and insights. Explain the axes, what each line or data point represents, and what conclusions can be drawn from this visualization.
+                <span class="font-semibold text-slate-800">Figure 1: HEX overview and headline gains.</span>
+                HEX ensembles semi-AR schedules (different block sizes/orders) and aggregates answers by majority vote. On LLaDA-8B-Instruct, HEX outperforms random and top-K margin decoding and even GRPO (d1) across GSM8K, MATH, and ARC-C. :contentReference[oaicite:5]{index=5}
               </figcaption>
             </figure>
             <!-- Figure 2 -->
             <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-              <img src="assets/figure2.png" alt="Comparison Results" class="h-auto w-full" />
+              <img src="assets/figure2.png" alt="Scaling behavior and tie-rate analysis" class="h-auto w-full" />
               <figcaption class="border-t border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-                <span class="font-semibold text-slate-800">Figure 2: Comparison Results.</span>
-                Description of the comparison shown in this figure. Explain what is being compared, the baseline methods, your proposed approach, and the key takeaways from the comparison.
+                <span class="font-semibold text-slate-800">Figure 2: Compute–accuracy scaling via HEX.</span>
+                Accuracy increases and tie-rate decreases as the number of voting samples grows, exposing a predictable compute→accuracy trade-off without fine-tuning. :contentReference[oaicite:6]{index=6}
               </figcaption>
             </figure>
+          </div>
+          <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm">
+              <p><span class="font-semibold">GSM8K:</span> Random 50.87% → <strong>HEX 88.10%</strong> (GRPO d1: 79.80%).</p>
+              <p class="text-slate-600">Setup: LLaDA-8B-Instruct; block sizes {8,16,32,64,128}, 5 seeds.</p>
+            </div>
+            <div class="rounded-xl border border-violet-100 bg-violet-50 p-4 text-sm">
+              <p><span class="font-semibold">MATH:</span> 16.40–16.80% (baselines) → <strong>HEX 40.00%</strong> (d1: 37.20%).</p>
+              <p class="text-slate-600">Majority vote beats likelihood re-ranking; semi-AR avoids [AfterEoT] collapse.</p>
+            </div>
+            <div class="rounded-xl border border-amber-100 bg-amber-50 p-4 text-sm">
+              <p><span class="font-semibold">ARC-C:</span> 47.87–70.05% (baselines) → <strong>HEX 87.80%</strong> (d1: 82.68%).</p>
+            </div>
+            <div class="rounded-xl border border-rose-100 bg-rose-50 p-4 text-sm">
+              <p><span class="font-semibold">TruthfulQA:</span> 28.36–42.40% (baselines) → <strong>HEX 57.46%</strong>.</p>
+            </div>
           </div>
         </section>
 
@@ -128,15 +144,24 @@
         <section class="mb-10">
           <h2 class="font-heading text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">Method Overview</h2>
           <p class="prose prose-slate mt-4">
-            [Provide a high-level overview of your method here. Explain the intuition behind your approach, the main components of your system, and how they work together. You can include architectural diagrams or algorithmic descriptions.]
+            Diffusion LLM training induces many masked-token conditionals that behave like <em>implicit experts</em> over different visible contexts.
+            <strong>HEX</strong> treats semi-autoregressive block schedules as queries to different experts; it samples multiple schedules (varying block sizes and seeds), decodes in a left-to-right semi-AR fashion within each schedule, and returns the <em>mode</em> of parsed outputs (tie-break to smallest block size). This consensus-seeking replaces brittle confidence-following with robust aggregation. :contentReference[oaicite:7]{index=7}
           </p>
           <figure class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            <img src="assets/method.png" alt="Method Overview" class="h-auto w-full" />
+            <img src="assets/method.png" alt="HEX method architecture" class="h-auto w-full" />
             <figcaption class="border-t border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-              <span class="font-semibold text-slate-800">Figure 3: Method Architecture.</span>
-              Overview of the proposed method showing the main components and their interactions.
+              <span class="font-semibold text-slate-800">Figure 3: HEX (Algorithm 2) at a glance.</span>
+              For each schedule, decode with semi-AR blocks; collect answers; majority-vote across schedules. Semi-AR avoids [AfterEoT] collapse seen in fully parallel decoding. :contentReference[oaicite:8]{index=8}
             </figcaption>
           </figure>
+          <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm">
+            <p class="font-semibold text-slate-800">Recommended defaults:</p>
+            <ul class="mt-2 list-disc pl-5 text-slate-700">
+              <li>Model: LLaDA-8B-Instruct; output length 256; 128 unmask steps (2 tokens/step).</li>
+              <li>Block sizes: {8, 16, 32, 64, 128}; temperature 0.9; ≥5 seeds (25 samples total).</li>
+              <li>Aggregation: majority vote; tie → smallest block size. :contentReference[oaicite:9]{index=9}</li>
+            </ul>
+          </div>
         </section>
 
         <!-- Getting Started -->
@@ -150,8 +175,8 @@ cd hex
 # Install dependencies
 pip install -r requirements.txt
 
-# Run demo
-python demo.py</code></pre>
+# Run demo (semi-AR + HEX)
+python demo.py --blocks 8,16,32,64,128 --seeds 5 --temperature 0.9 --vote majority --tie smallest</code></pre>
         </section>
 
         <!-- Citation -->
@@ -160,10 +185,13 @@ python demo.py</code></pre>
           <p class="mt-3 text-slate-700">If you find this work useful in your research, please consider citing:</p>
           <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
             <pre class="overflow-x-auto text-[13px] leading-6 text-slate-800"><code class="font-mono">@article{lee2025hex,
-  title={Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts},
-  author={Lee, Jihoon and Moon, Hoyeon and Zhai, Kevin and Chithanar, Arun Kumar and Sahu, Anit Kumar and Kar, Soummya and Lee, Chul and Chakraborty, Souradip and Bedi, Amrit Singh},
-  journal={},
-  year={2025}
+  title   = {Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts},
+  author  = {Jihoon Lee and Hoyeon Moon and Kevin Zhai and Arun Kumar Chithanar and
+             Anit Kumar Sahu and Soummya Kar and Chul Lee and Souradip Chakraborty and
+             Amrit Singh Bedi},
+  journal = {arXiv preprint},
+  year    = {2025},
+  note    = {Project page: https://junos-ai-org.github.io/Test-Time-Scaling/}
 }</code></pre>
           </div>
         </section>
@@ -171,7 +199,7 @@ python demo.py</code></pre>
 
       <!-- Footer -->
       <footer class="mx-auto my-8 max-w-3xl rounded-2xl bg-slate-900 px-6 py-6 text-center text-sm text-slate-300">
-        <p>Test-Time Scaling in Diffusion LLMs</p>
+        <p>HEX — Hidden Semi-Autoregressive Experts for Test-Time Scaling in Diffusion LLMs</p>
       </footer>
     </main>
   </div>
