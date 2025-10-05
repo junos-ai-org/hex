@@ -1,0 +1,27 @@
+name: Deploy Website to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Upload index.html to S3 with Cache-Control Header
+        run: |
+          aws s3 cp index.html s3://www.junos.ai/Test-Time-Scaling/index.html --cache-control "max-age=0, no-cache, must-revalidate"
+
+
+
