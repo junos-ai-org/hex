@@ -40,11 +40,13 @@ in which masking is performed plays a critical role in determining performance d
 - 🚀 **Training-Free Test-Time Scaling:** Ensembles diverse block-sized decoding schedules at inference to unlock latent reasoning capabilities without retraining.
 
 ## Results
----
+
 <p align="center">
-  <img src="assets/figure_1.png"/>
+  <img src="assets/figure_1.png" />
 </p>
+
 ---
+
 ## Installation
 
 ```bash
