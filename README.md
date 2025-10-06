@@ -40,8 +40,11 @@ in which masking is performed plays a critical role in determining performance d
 - 🚀 **Training-Free Test-Time Scaling:** Ensembles diverse block-sized decoding schedules at inference to unlock latent reasoning capabilities without retraining.
 
 ## Results
-
-![Main Result](assets/figure_1.pdf)
+---
+<p align="center">
+  <img src="assets/Hfigure_1.gif"/>
+</p>
+---
 
 ## Installation
 
@@ -87,12 +90,10 @@ If you find this work useful, please cite our paper:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-Most of the code of /HEX/ is based on [d1](https://github.com/dllm-reasoning/d1).
+Most of the code of `/HEX/` is based on [d1](https://github.com/dllm-reasoning/d1).
 
 ## Acknowledgments
 
-[Optional: Add acknowledgments for funding, collaborators, or resources used]
-
 ## Contact
 
-For questions or issues, please open an issue on GitHub or contact [email@domain.com]
+For questions or issues, please open an issue on GitHub.
