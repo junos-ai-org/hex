@@ -41,6 +41,8 @@ in which masking is performed plays a critical role in determining performance d
 
 ## Results
 
+---
+
 <p align="center">
   <img src="assets/figure_1.png" />
 </p>
