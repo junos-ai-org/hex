@@ -1,0 +1,11 @@
+diffu-grpo/checkpoints
+diffu-grpo/merged_models
+diffu-grpo/wandb
+**/*eval_result*/
+*.png
+eval/*_combined
+eval/*vis_tokens_imgs*/
+eval/*visualize*/
+eval/combined_visualize/
+**/*__pycache__*/
+**/*results*/

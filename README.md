@@ -9,7 +9,14 @@
 <sup>1</sup>Yonsei University, <sup>2</sup>Oracle, <sup>3</sup>CMU, <sup>4</sup>UMD, <sup>5</sup>UCF
 
 ---
+<p align="center">
+  <img src="HEX/assets/HEX_visualization_sample.gif" alt="demo" />
+</p>
 
+<!-- Write anything below this line (left intentionally blank) -->
+
+Most of the code of /HEX/ is based on [d1](https://github.com/dllm-reasoning/d1).
+---
 ## Abstract
 
 [Your paper abstract goes here. Provide a concise summary of your work, the problem you're solving, your approach, and key results.]
