@@ -14,8 +14,6 @@
 </p>
 
 <!-- Write anything below this line (left intentionally blank) -->
-
-Most of the code of /HEX/ is based on [d1](https://github.com/dllm-reasoning/d1).
 ---
 ## Abstract
 
@@ -37,51 +35,28 @@ Most of the code of /HEX/ is based on [d1](https://github.com/dllm-reasoning/d1)
 
 ```bash
 # Clone the repository
-git clone https://github.com/junos-ai-org/hex.git
-cd hex
+git clone https://github.com/junos-ai-org/Test-Time-Scaling
+cd HEX
 
 # Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+conda env create -f env.yml
+conda activate dllm_tts
 ```
 
 ## Quick Start
 
-```python
-from hex import YourMainClass
+Inside the `HEX/eval` directory, review the arguments described in `run_eval_HEX.sh` and run the script accordingly.
 
-# Initialize
-model = YourMainClass()
-
-# Run inference
-results = model.predict(input_data)
-```
-
-## Usage Examples
-
-### Example 1: Basic Usage
-```python
-# Add code example
-```
-
-### Example 2: Advanced Usage
-```python
-# Add code example
+```bash
+cd eval
+bash run_eval_HEX.sh
 ```
 
 ## Project Structure
 
 ```
-hex/
-├── src/               # Source code
-├── data/              # Sample data
-├── notebooks/         # Jupyter notebooks
-├── results/           # Experimental results
-├── assets/            # Images and media
-└── tests/             # Unit tests
+Test-Time-Scaling/
+└── HEX/               # HEX Source code
 ```
 
 ## Citation
@@ -100,6 +75,7 @@ If you find this work useful, please cite our paper:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Most of the code of /HEX/ is based on [d1](https://github.com/dllm-reasoning/d1).
 
 ## Acknowledgments
 

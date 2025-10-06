@@ -4,11 +4,12 @@
 GPU_IDS=(0)
 MASTER_PORT=29707
 ############################################################
-TASKS=('math') 
-GEN_LENGTHS=(256)
+TASKS=('math') # 'gsm8k' 'math' 'arcc' 'truthfulqa'
+GEN_LENGTHS=(256) # 128 256 512
 DIFF_STEPS=(128) # half of the gen_length
 MODEL_PATHS=("/home/work/jihoon_wombat_storage/MODELS/LLaDA-8B-Instruct") # abs path of your dllm
-CHECKPOINT_PATH=("nope") # "nope" means no LoRa Adaptor! Using foundation model
+OUTPUT_PATH="results/" # abs path of your folder to contain HEX json file 
+CHECKPOINT_PATH=("nope") # "nope" means no LoRa Adaptor! Using foundation model in MODEL_PATHS
 SEEDS=(42)
 TEMPERATURES=(0)
 
