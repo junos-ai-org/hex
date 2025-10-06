@@ -17,17 +17,29 @@
 ---
 ## Abstract
 
-[Your paper abstract goes here. Provide a concise summary of your work, the problem you're solving, your approach, and key results.]
+Diffusion-based large language models (dLLMs) are trained flexibly to model extreme dependence
+in the data distribution; however, how to best utilize this information at inference time remains
+an open problem. In this work, we uncover an interesting property of these models: dLLMs
+trained on textual data implicitly learn a mixture of semi-autoregressive experts, where different
+generation orders reveal different specialized behaviors. We show that committing to any single,
+fixed inference time schedule, a common practice, collapses performance by failing to leverage
+this latent ensemble. To address this, we introduce HEX (Hidden semiautoregressive EXperts for
+test-time scaling), a training-free inference method that ensembles across heterogeneous block
+schedules. By doing a majority vote over diverse block-sized generation paths, HEX robustly
+avoids failure modes associated with any single fixed schedule. On reasoning benchmarks such
+as GSM8K, it boosts accuracy by up to 3.56× (from 24.72% to 88.10%), outperforming top-K
+margin inference and specialized fine-tuned methods like GRPO, without additional training. HEX
+even yields significant gains on MATH benchmark from 16.40% to 40.00%, scientific reasoning on
+ARC-C from 54.18% to 87.80%, and TruthfulQA from 28.36% to 57.46%. Our results establish a
+new paradigm for test-time scaling in diffusion-based LLMs (dLLMs), revealing that the sequence
+in which masking is performed plays a critical role in determining performance during inference.
 
 ## Key Features
 
-- ✨ Feature 1: Brief description
-- 🚀 Feature 2: Brief description
-- 🎯 Feature 3: Brief description
+- ✨ **Hidden Semi-Autoregressive Experts:** Reveals that diffusion LLMs implicitly learn multiple semi-AR experts, each specializing in distinct generation orders.
+- 🚀 **Training-Free Test-Time Scaling:** Ensembles diverse block-sized decoding schedules at inference to unlock latent reasoning capabilities without retraining.
 
 ## Results
-
-[Add key figures, visualizations, or GIFs demonstrating your results]
 
 ![Main Result](assets/main_result.png)
 
