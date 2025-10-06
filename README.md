@@ -41,7 +41,7 @@ in which masking is performed plays a critical role in determining performance d
 
 ## Results
 
-![Main Result](assets/main_result.png)
+![Main Result](assets/figure_1.pdf)
 
 ## Installation
 
