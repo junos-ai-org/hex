@@ -85,41 +85,6 @@
   <!-- JS -->
   <script defer src="static/js/fontawesome.all.min.js"></script>
 
-  <!-- 🟢 Background control -->
-  <style>
-    /* 기본: 모든 section/hero는 옅은 회색 */
-    section.section,
-    section.hero {
-      background-color: #f5f5f5;
-    }
-
-    /* Bulma의 is-light를 덮어써서 톤 통일 */
-    section.hero.is-light {
-      background-color: #f5f5f5 !important;
-    }
-
-    /* 섹션 내부에 이미지가 하나라도 있으면 흰 배경 */
-    section.section:has(img),
-    section.hero:has(img) {
-      background-color: #ffffff !important;
-    }
-
-    /* Footer도 사이트 톤에 맞춰 옅은 회색 */
-    footer.footer {
-      background-color: #f5f5f5;
-    }
-
-    /* 부드러운 전환 (선택) */
-    section {
-      transition: background-color 0.25s ease-in-out;
-    }
-
-    /* :has() 미지원 브라우저 폴백용 클래스 */
-    section.has-image {
-      background-color: #ffffff !important;
-    }
-  </style>
-
   <!-- Structured Data for Academic Papers -->
   <script type="application/ld+json">
   {
@@ -190,7 +155,7 @@
   </div>
 
   <main id="main-content">
-    <!-- 상단 Hero / 저자 영역 -->
+    <!-- 상단 Hero / 저자 영역 (그대로 유지) -->
     <section class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop">
@@ -247,7 +212,7 @@
       </div>
     </section>
 
-    <!-- 티저 GIF (이미지 → 흰 배경) -->
+    <!-- ▼▼ 추가된 티저 GIF 섹션 (Abstract 바로 위) ▼▼ -->
     <section class="section">
       <div class="container is-max-desktop">
         <figure class="image" style="margin:0 auto; max-width: 1000px;">
@@ -255,15 +220,18 @@
         </figure>
       </div>
     </section>
+    <!-- ▲▲ 추가 끝 ▲▲ -->
 
-    <!-- Abstract (이미지 포함 → 흰 배경) -->
+    <!-- Abstract -->
     <section class="section hero is-light">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column is-10">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
 
+            <!-- 좌우 이미지 배치 -->
             <div class="columns is-variable is-5 is-vcentered">
+              <!-- 왼쪽 -->
               <div class="column is-6">
                 <figure class="image" style="margin: 0 auto;">
                   <img src="assets/HEX.png" alt="Left figure" loading="lazy">
@@ -273,6 +241,7 @@
                 </figure>
               </div>
 
+              <!-- 오른쪽 -->
               <div class="column is-6">
                 <figure class="image" style="margin: 0 auto;">
                   <img src="assets/figure_avg.png" alt="Right figure" loading="lazy">
@@ -283,6 +252,7 @@
               </div>
             </div>
 
+            <!-- 텍스트 -->
             <div class="content has-text-justified" style="margin-top: 1rem;">
               <p>
                 Diffusion-based large language models (dLLMs) are trained flexibly to model extreme dependence in the data distribution; however, how to best utilize this information at
@@ -308,16 +278,29 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
       </div>
     </section>
 
-    <!-- Key Contributions (텍스트 중심 → 옅은 회색) -->
+    <!-- Key Contributions -->
     <section class="section">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column is-10">
             <h2 class="title is-3 has-text-centered">Key Contributions</h2>
+
+            <!-- (선택) 대표 이미지 넣고 싶으면 사용 -->
+            <!--
+            <figure class="image" style="margin: 1rem auto; max-width: 1000px;">
+              <img src="assets/key_contrib.png" alt="Key contributions overview" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                Optional: <code>assets/key_contrib.png</code>
+              </figcaption>
+            </figure>
+            -->
+
             <div class="content" style="margin-top: 0.75rem;">
               <ul>
                 <li><b>Limitation Analysis:</b> We identify why common confidence-based schedules (e.g., top-K margin) can catastrophically fail in dLLMs on reasoning tasks (e.g., [AfterEoT] collapse), revealing sensitivity to decoding order.</li>
+
                 <li><b>HEX—Test-time Scaling via Hidden Experts:</b> We uncover and exploit a <em>latent mixture</em> of semi-AR experts by marginalizing over block schedules and aggregating via majority vote—introducing a new compute-accuracy knob at inference time.</li>
+
                 <li><b>State-of-the-Art, Training-Free:</b> HEX achieves up to <strong>3.56×</strong> gains and surpasses GRPO on GSM8K (88.10%), MATH (40.00%), ARC-C (87.80%), and improves TruthfulQA (57.46%)—all without retraining.</li>
               </ul>
             </div>
@@ -326,11 +309,13 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
       </div>
     </section>
 
-    <!-- Findings (이미지 포함 → 흰 배경) -->
+
+    <!-- Findings -->
     <section class="section">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Findings</h2>
 
+        <!-- 첫 번째 이미지 (단독 + 개별 캡션) -->
         <div class="columns is-centered">
           <div class="column is-8">
             <figure class="image">
@@ -342,6 +327,7 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
           </div>
         </div>
 
+        <!-- 두 번째 줄: 두 개 이미지 + 공통 캡션 -->
         <div class="columns is-centered is-variable is-5">
           <div class="column is-6-tablet is-5-desktop">
             <figure class="image">
@@ -356,6 +342,7 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
           </div>
         </div>
 
+        <!-- 공통 캡션 -->
         <div class="has-text-grey has-text-centered" style="margin-top:.5rem;">
           Uncovered interesting property: dLLMs trained on textual data implicitly learn a mixture of semi-autoregressive experts, where different generation orders reveal different specialized behaviors. We show that committing to any single, fixed inference time schedule, a common practice, collapses performance by failing to leverage this latent ensemble. HEX address this, by ensembling heterogeneous block schedules. 
         </div>
@@ -363,7 +350,9 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
       </div>
     </section>
 
-    <!-- Result (이미지 포함 → 흰 배경) -->
+
+
+    <!-- Result -->
     <section class="section hero is-light">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -384,12 +373,24 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
               </figcaption>
             </figure>
 
+            <!-- <div class="content has-text-justified">
+              <ul>
+                <li><b>GSM8K:</b> up to 88.10%</li>
+                <li><b>MATH:</b> 40.00%</li>
+                <li><b>ARC-C:</b> 87.80%</li>
+                <li><b>TruthfulQA:</b> 57.46%</li>
+              </ul>
+              <p>
+                Accuracy increases as the number of voting samples grows, revealing a clean compute→accuracy
+                trade-off at test time without fine-tuning.
+              </p> -->
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BibTeX (텍스트 중심 → 옅은 회색) -->
+    <!-- BibTeX -->
     <section class="section" id="BibTeX">
       <div class="container is-max-desktop content">
         <div class="bibtex-header" style="display:flex;align-items:center;justify-content:space-between;">
@@ -436,21 +437,6 @@ TruthfulQA from 28.36% to 57.46%. Our results establish a new paradigm for test-
       const text = el.innerText || el.textContent;
       navigator.clipboard.writeText(text).then(() => alert('BibTeX copied!'));
     }
-
-    // :has() 미지원 브라우저 폴백: 이미지가 있는 섹션에 .has-image 클래스 부여
-    (function () {
-      try {
-        // 일부 브라우저에서는 querySelector(':has') 호출에서 에러가 나므로 try-catch
-        document.querySelector('section:has(img)');
-        // 지원하면 아무 것도 하지 않음 (CSS가 처리)
-      } catch (e) {
-        document.querySelectorAll('section').forEach(function (sec) {
-          if (sec.querySelector('img')) {
-            sec.classList.add('has-image');
-          }
-        });
-      }
-    })();
   </script>
 </body>
 </html>
