@@ -229,14 +229,31 @@
           <div class="column is-10">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
 
-            <figure class="image" style="margin: 1rem auto; max-width: 1000px;">
-              <img src="static/images/abstract.png" alt="Abstract figure" loading="lazy">
-              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
-                Replace with <code>static/images/abstract.png</code>
-              </figcaption>
-            </figure>
+            <!-- 좌우 이미지 배치 -->
+            <div class="columns is-variable is-5 is-vcentered">
+              <!-- 왼쪽 -->
+              <div class="column is-6">
+                <figure class="image" style="margin: 0 auto;">
+                  <img src="assets/HEX.png" alt="Left figure" loading="lazy">
+                  <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                    Left: <code>assets/HEX.png</code>
+                  </figcaption>
+                </figure>
+              </div>
 
-            <div class="content has-text-justified">
+              <!-- 오른쪽 -->
+              <div class="column is-6">
+                <figure class="image" style="margin: 0 auto;">
+                  <img src="assets/figure_avg.png" alt="Right figure" loading="lazy">
+                  <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                    Right: <code>static/images/abstract.png</code>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <!-- 텍스트 -->
+            <div class="content has-text-justified" style="margin-top: 1rem;">
               <p>
                 Diffusion-based large language models (dLLMs) implicitly learn a mixture of semi-autoregressive experts.
                 <b>HEX</b> ensembles heterogeneous block schedules and majority-votes outputs, delivering strong gains on
@@ -247,6 +264,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- Approach -->
     <section class="section">
@@ -264,9 +282,9 @@
 
             <div class="content has-text-justified">
               <p>
-                We treat semi-autoregressive block schedules as queries to different implicit experts in dLLMs.
+                <!-- We treat semi-autoregressive block schedules as queries to different implicit experts in dLLMs.
                 Sampling multiple schedules (varying block sizes/seeds) and aggregating with a majority vote
-                avoids brittle single-schedule failures and yields robust outputs.
+                avoids brittle single-schedule failures and yields robust outputs. -->
               </p>
             </div>
           </div>
@@ -288,7 +306,7 @@
               </figcaption>
             </figure>
 
-            <div class="content has-text-justified">
+            <!-- <div class="content has-text-justified">
               <ul>
                 <li><b>GSM8K:</b> up to 88.10%</li>
                 <li><b>MATH:</b> 40.00%</li>
@@ -298,7 +316,7 @@
               <p>
                 Accuracy increases as the number of voting samples grows, revealing a clean compute→accuracy
                 trade-off at test time without fine-tuning.
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
