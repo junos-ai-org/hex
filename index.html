@@ -71,41 +71,28 @@
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon" href="static/images/favicon.ico">
 
-  <!-- Critical CSS - Load synchronously (A 템플릿의 Bulma/커스텀) -->
+  <!-- Critical CSS -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Optional (안 써도 됨) -->
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
+  <noscript><link rel="stylesheet" href="static/css/fontawesome.all.min.css"></noscript>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <!-- JS -->
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
 
   <!-- Structured Data for Academic Papers -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts (HEX)",
-    "description": "HEX ensembles semi-autoregressive schedules and majority-votes outputs, achieving strong gains on reasoning benchmarks without retraining.",
-    "author": [
+    "@context":"https://schema.org",
+    "@type":"ScholarlyArticle",
+    "headline":"Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts (HEX)",
+    "description":"HEX ensembles semi-autoregressive schedules and majority-votes outputs, achieving strong gains on reasoning benchmarks without retraining.",
+    "author":[
       {"@type":"Person","name":"Jihoon Lee","affiliation":{"@type":"Organization","name":"Yonsei University"}},
       {"@type":"Person","name":"Hoyeon Moon","affiliation":{"@type":"Organization","name":"Yonsei University"}},
       {"@type":"Person","name":"Kevin Zhai","affiliation":{"@type":"Organization","name":"University of Central Florida"}},
@@ -116,42 +103,55 @@
       {"@type":"Person","name":"Souradip Chakraborty","affiliation":{"@type":"Organization","name":"University of Maryland, College Park"}},
       {"@type":"Person","name":"Amrit Singh Bedi","affiliation":{"@type":"Organization","name":"University of Central Florida"}}
     ],
-    "datePublished": "2025-01-01",
-    "publisher": {"@type":"Organization","name":"Preprint"},
-    "url": "https://junos-ai-org.github.io/Test-Time-Scaling/",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["diffusion LLMs","semi-autoregressive","HEX","reasoning","ensemble","GSM8K","MATH","ARC-C","TruthfulQA"],
-    "abstract": "Diffusion-based LLMs implicitly learn a mixture of semi-autoregressive experts; HEX ensembles heterogeneous block schedules and majority-votes outputs for robust test-time scaling.",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {"@type": "WebPage","@id":"https://junos-ai-org.github.io/Test-Time-Scaling/"}
+    "datePublished":"2025-01-01",
+    "publisher":{"@type":"Organization","name":"Preprint"},
+    "url":"https://junos-ai-org.github.io/Test-Time-Scaling/",
+    "image":"https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords":["diffusion LLMs","semi-autoregressive","HEX","reasoning","ensemble","GSM8K","MATH","ARC-C","TruthfulQA"],
+    "abstract":"Diffusion-based large language models (dLLMs) are trained flexibly to model extreme dependence in the data distribution; however, how to best utilize this information at
+inference time remains an open problem. In this work, we uncover an interesting
+property of these models: dLLMs trained on textual data implicitly learn a
+mixture of semi-autoregressive experts, where different generation orders reveal
+different specialized behaviors. We show that committing to any single, fixed inference
+time schedule, a common practice, collapses performance by failing to
+leverage this latent ensemble. To address this, we introduce HEX (Hidden semiautoregressive
+EXperts for test-time scaling), a training-free inference method that
+ensembles across heterogeneous block schedules. By doing a majority vote over
+diverse block-sized generation paths, HEX robustly avoids failure modes associated
+with any single fixed schedule. On reasoning benchmarks such as GSM8K,
+it boosts accuracy by up to 3.56× (from 24.72\% to 88.10\%), outperforming top-K
+margin inference and specialized fine-tuned methods like GRPO, without additional
+training. HEX even yields significant gains on MATH benchmark from
+16.40\% to 40.00\%, scientific reasoning on ARC-C from 54.18\% to 87.80\%, and
+TruthfulQA from 28.36\% to 57.46\%. Our results establish a new paradigm for test-time scaling in diffusion-based LLMs (dLLMs), revealing that the sequence in which masking is performed plays a critical role in determining performance during inference.",
+    "isAccessibleForFree":true,
+    "license":"https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity":{"@type":"WebPage","@id":"https://junos-ai-org.github.io/Test-Time-Scaling/"}
   }
   </script>
 
   <!-- Website/Organization Structured Data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "HEX Project",
-    "url": "https://junos-ai-org.github.io/Test-Time-Scaling/",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://github.com/junos-ai-org/hex"
-    ]
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"HEX Project",
+    "url":"https://junos-ai-org.github.io/Test-Time-Scaling/",
+    "logo":"https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs":["https://github.com/junos-ai-org/hex"]
   }
   </script>
 </head>
 <body>
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+  <!-- Scroll to Top Button (옵션) -->
+  <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown (원한다면 다른 작업으로 교체/삭제 가능) -->
+  <!-- (옵션) More Works Dropdown — 원하면 유지/삭제 -->
   <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
+    <button class="more-works-btn" onclick="document.getElementById('moreWorksDropdown').classList.toggle('is-active')" title="View More Works from Our Lab">
       <i class="fas fa-flask"></i>
       More Works
       <i class="fas fa-chevron-down dropdown-arrow"></i>
@@ -159,7 +159,7 @@
     <div class="more-works-dropdown" id="moreWorksDropdown">
       <div class="dropdown-header">
         <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
+        <button class="close-btn" onclick="document.getElementById('moreWorksDropdown').classList.remove('is-active')">
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -170,6 +170,7 @@
   </div>
 
   <main id="main-content">
+    <!-- 상단 Hero / 저자 영역 (그대로 유지) -->
     <section class="hero">
       <div class="hero-body">
         <div class="container is-max-desktop">
@@ -192,7 +193,7 @@
 
               <div class="is-size-5 publication-authors">
                 <span class="author-block">
-                  <sup>1</sup><a href="https://www.yonsei.ac.kr/en_sc/" target="_blank">Yonsei University</a> &nbsp;
+                  <sup>1</sup><a href="https://www.yonsei.ac.kr/" target="_blank">Yonsei University</a> &nbsp;
                   <sup>2</sup><a href="https://www.oracle.com/" target="_blank">Oracle</a> &nbsp;
                   <sup>3</sup><a href="https://www.cmu.edu/" target="_blank">Carnegie Mellon University</a> &nbsp;
                   <sup>4</sup><a href="https://www.umd.edu/" target="_blank">University of Maryland, College Park</a> &nbsp;
@@ -202,7 +203,7 @@
               </div>
 
               <div class="column has-text-centered">
-                <div class="publication-links">
+                <div class="publication-links" style="margin-top:.75rem;">
                   <span class="link-block">
                     <a href="https://junos-ai-org.github.io/Test-Time-Scaling/" target="_blank"
                        class="external-link button is-normal is-rounded is-dark">
@@ -217,20 +218,6 @@
                       <span>Code</span>
                     </a>
                   </span>
-                  <span class="link-block">
-                    <a href="#" target="_blank"
-                       class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon"><i class="fas fa-database"></i></span>
-                      <span>Data / Eval Scripts</span>
-                    </a>
-                  </span>
-                  <span class="link-block">
-                    <a href="#" target="_blank"
-                       class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon"><i class="fas fa-video"></i></span>
-                      <span>Video (coming soon)</span>
-                    </a>
-                  </span>
                 </div>
               </div>
 
@@ -240,30 +227,27 @@
       </div>
     </section>
 
-    <!-- Teaser (GIF로 대체) -->
-    <section class="hero teaser">
-      <div class="container is-max-desktop">
-        <div class="hero-body">
-          <img src="static/images/hex_visualization.gif" alt="HEX visualization" style="width:100%;height:auto" loading="lazy">
-          <h2 class="subtitle has-text-centered">
-            HEX: Ensembles semi-autoregressive block schedules and aggregates via majority vote to robustly improve reasoning accuracy without retraining.
-          </h2>
-        </div>
-      </div>
-    </section>
+    <!-- ====== 여기서부터 섹션만: Abstract / Approach / Result ====== -->
 
     <!-- Abstract -->
     <section class="section hero is-light">
       <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Abstract</h2>
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <h2 class="title is-3 has-text-centered">Abstract</h2>
+
+            <figure class="image" style="margin: 1rem auto; max-width: 1000px;">
+              <img src="static/images/abstract.png" alt="Abstract figure" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                Replace with <code>static/images/abstract.png</code>
+              </figcaption>
+            </figure>
+
             <div class="content has-text-justified">
               <p>
-                Diffusion-based large language models (dLLMs) flexibly model extreme dependence in textual data; how to best utilize this at inference time remains open.
-                We uncover that dLLMs implicitly learn a mixture of semi-autoregressive experts, where different generation orders reveal specialized behaviors.
-                Committing to a single fixed schedule collapses performance. We introduce <b>HEX</b>, a training-free inference method that ensembles heterogeneous block schedules and majority-votes outputs, avoiding failure modes of any single schedule.
-                On reasoning benchmarks such as GSM8K, accuracy rises up to 3.56× (24.72%→88.10%), and we observe gains on MATH (16.40%→40.00%), ARC-C (54.18%→87.80%), and TruthfulQA (28.36%→57.46%), establishing a new paradigm for test-time scaling in diffusion LLMs.
+                Diffusion-based large language models (dLLMs) implicitly learn a mixture of semi-autoregressive experts.
+                <b>HEX</b> ensembles heterogeneous block schedules and majority-votes outputs, delivering strong gains on
+                GSM8K, MATH, ARC-C, and TruthfulQA without retraining.
               </p>
             </div>
           </div>
@@ -271,54 +255,72 @@
       </div>
     </section>
 
-    <!-- Image carousel (Figure 1, 2) -->
-    <section class="hero is-small">
-      <div class="hero-body">
-        <div class="container">
-          <div id="results-carousel" class="carousel results-carousel">
-            <div class="item">
-              <img src="static/images/figure1.png" alt="HEX overview and headline gains" loading="lazy"/>
-              <h2 class="subtitle has-text-centered">
-                Figure 1: HEX overview and headline gains across GSM8K, MATH, ARC-C.
-              </h2>
-            </div>
-            <div class="item">
-              <img src="static/images/figure2.png" alt="Compute–accuracy scaling and tie-rate" loading="lazy"/>
-              <h2 class="subtitle has-text-centered">
-                Figure 2: Compute→accuracy scaling via more voting samples; tie-rate decreases.
-              </h2>
+    <!-- Approach -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <h2 class="title is-3 has-text-centered">Approach</h2>
+
+            <figure class="image" style="margin: 1rem auto; max-width: 1000px;">
+              <img src="static/images/approach.png" alt="Approach diagram" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                Replace with <code>static/images/approach.png</code>
+              </figcaption>
+            </figure>
+
+            <div class="content has-text-justified">
+              <p>
+                We treat semi-autoregressive block schedules as queries to different implicit experts in dLLMs.
+                Sampling multiple schedules (varying block sizes/seeds) and aggregating with a majority vote
+                avoids brittle single-schedule failures and yields robust outputs.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Optional YouTube section (비디오 준비 전이면 숨겨도 됨) -->
-    <!--
-    <section class="hero is-small is-light">
-      <div class="hero-body">
-        <div class="container">
-          <h2 class="title is-3">Video Presentation</h2>
-          <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
-              <div class="publication-video">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
+    <!-- Result -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-10">
+            <h2 class="title is-3 has-text-centered">Result</h2>
+
+            <figure class="image" style="margin: 1rem auto; max-width: 1000px;">
+              <img src="static/images/result.png" alt="Main results" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                Replace with <code>static/images/result.png</code>
+              </figcaption>
+            </figure>
+
+            <div class="content has-text-justified">
+              <ul>
+                <li><b>GSM8K:</b> up to 88.10%</li>
+                <li><b>MATH:</b> 40.00%</li>
+                <li><b>ARC-C:</b> 87.80%</li>
+                <li><b>TruthfulQA:</b> 57.46%</li>
+              </ul>
+              <p>
+                Accuracy increases as the number of voting samples grows, revealing a clean compute→accuracy
+                trade-off at test time without fine-tuning.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    -->
 
-    <!-- BibTeX -->
+    <!-- ====== 섹션 끝 ====== -->
+
+    <!-- BibTeX (원하면 유지) -->
     <section class="section" id="BibTeX">
       <div class="container is-max-desktop content">
-        <div class="bibtex-header">
+        <div class="bibtex-header" style="display:flex;align-items:center;justify-content:space-between;">
           <h2 class="title">BibTeX</h2>
-          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-            <i class="fas fa-copy"></i>
-            <span class="copy-text">Copy</span>
+          <button class="button is-small is-dark" onclick="copyBibTeX()" title="Copy BibTeX">
+            <span class="icon"><i class="fas fa-copy"></i></span><span>Copy</span>
           </button>
         </div>
 <pre id="bibtex-code"><code>@article{lee2025hex,
@@ -333,6 +335,7 @@
       </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="container">
         <div class="columns is-centered">
@@ -348,10 +351,16 @@
         </div>
       </div>
     </footer>
-
   </main>
 
-  <!-- (선택) Statcounter 등 트래킹 가능 -->
-
+  <!-- Helpers -->
+  <script>
+    function copyBibTeX() {
+      const el = document.getElementById('bibtex-code');
+      if (!el) return;
+      const text = el.innerText || el.textContent;
+      navigator.clipboard.writeText(text).then(() => alert('BibTeX copied!'));
+    }
+  </script>
 </body>
 </html>
