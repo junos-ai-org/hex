@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/HEX_visualization_sample.gif" alt="demo" />
+  <img src="assets/HEX_visualization_sample_2.gif" alt="demo" />
 </p>
 
 <!-- Write anything below this line (left intentionally blank) -->
