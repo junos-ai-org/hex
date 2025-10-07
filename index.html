@@ -255,9 +255,22 @@
             <!-- 텍스트 -->
             <div class="content has-text-justified" style="margin-top: 1rem;">
               <p>
-                Diffusion-based large language models (dLLMs) implicitly learn a mixture of semi-autoregressive experts.
-                <b>HEX</b> ensembles heterogeneous block schedules and majority-votes outputs, delivering strong gains on
-                GSM8K, MATH, ARC-C, and TruthfulQA without retraining.
+                Diffusion-based large language models (dLLMs) are trained flexibly to model extreme dependence in the data distribution; however, how to best utilize this information at
+inference time remains an open problem. In this work, we uncover an interesting
+property of these models: dLLMs trained on textual data implicitly learn a
+mixture of semi-autoregressive experts, where different generation orders reveal
+different specialized behaviors. We show that committing to any single, fixed inference
+time schedule, a common practice, collapses performance by failing to
+leverage this latent ensemble. To address this, we introduce <b>HEX</b> (Hidden semiautoregressive
+EXperts for test-time scaling), a training-free inference method that
+ensembles across heterogeneous block schedules. By doing a majority vote over
+diverse block-sized generation paths, HEX robustly avoids failure modes associated
+with any single fixed schedule. On reasoning benchmarks such as GSM8K,
+it boosts accuracy by up to 3.56× (from 24.72\% to 88.10\%), outperforming top-K
+margin inference and specialized fine-tuned methods like GRPO, without additional
+training. HEX even yields significant gains on MATH benchmark from
+16.40\% to 40.00\%, scientific reasoning on ARC-C from 54.18\% to 87.80\%, and
+TruthfulQA from 28.36\% to 57.46\%. Our results establish a new paradigm for test-time scaling in diffusion-based LLMs (dLLMs), revealing that the sequence in which masking is performed plays a critical role in determining performance during inference. 
               </p>
             </div>
           </div>
@@ -265,7 +278,21 @@
       </div>
     </section>
 
-
+    <!-- Key contributions -->
+        <section class="mb-10">
+          <div class="rounded-2xl border border-blue-100 bg-blue-50 p-5 sm:p-6">
+            <div class="flex items-center gap-2">
+              <h3 class="font-heading text-lg font-semibold text-blue-900">Key Contributions</h3>
+              <span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-blue-700">TL;DR</span>
+            </div>
+            <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
+              <li><span class="font-semibold">Limitation Analysis:</span> We identify why common confidence-based schedules (e.g., top-K margin) can catastrophically fail in dLLMs on reasoning tasks (e.g., [AfterEoT] collapse), revealing sensitivity to decoding order.</li>
+              <li><span class="font-semibold">HEX—Test-time Scaling via Hidden Experts:</span> We uncover and exploit a <em>latent mixture</em> of semi-AR experts by marginalizing over block schedules and aggregating via majority vote—introducing a new compute-accuracy knob at inference time. </li>
+              <li><span class="font-semibold">State-of-the-Art, Training-Free:</span> HEX achieves up to <strong>3.56×</strong> gains and surpasses GRPO on GSM8K (88.10%), MATH (40.00%), ARC-C (87.80%), and improves TruthfulQA (57.46%)—all without retraining. </li>
+            </ul>
+          </div>
+        </section>
+        
     <!-- Approach -->
     <section class="section">
       <div class="container is-max-desktop">
