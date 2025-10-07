@@ -1,7 +1,7 @@
 # Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts
 
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX)
-[![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://junos-ai-org.github.io/hex)
+[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/pdf/2510.05040)
+[![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://junos-ai-org.github.io/Test-Time-Scaling/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Jihoon Lee<sup>1</sup>, Hoyeon Moon<sup>1</sup>, Kevin Zhai<sup>5</sup>, Arun Kumar Chithanar, Anit Kumar Sahu<sup>2</sup>, Soummya Kar<sup>3</sup>, Chul Lee, Souradip Chakraborty<sup>4</sup>, Amrit Singh Bedi<sup>5</sup>**
