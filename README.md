@@ -10,7 +10,7 @@
 
 ---
 <p align="center">
-  <img src="HEX/assets/HEX_visualization_sample_2.gif" alt="demo" />
+  <img src="HEX/assets/HEX_visualization_sample.gif" alt="demo" />
 </p>
 
 <!-- Write anything below this line (left intentionally blank) -->
