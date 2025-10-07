@@ -308,39 +308,47 @@ TruthfulQA from 28.36\% to 57.46\%. Our results establish a new paradigm for tes
     </section>
 
 
-    <!-- Approach -->
+    <!-- Findings -->
     <section class="section">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Findings</h2>
 
-        <!-- 가운데 정렬 + 적절한 간격 -->
-        <div class="columns is-multiline is-variable is-5 is-centered">
-
-          <!-- 모바일 1칸, 태블릿 2칸, 데스크탑 3칸 -->
-          <div class="column is-12-mobile is-6-tablet is-4-desktop">
+        <!-- 첫 번째 이미지 (단독 + 개별 캡션) -->
+        <div class="columns is-centered">
+          <div class="column is-8">
             <figure class="image">
               <img src="assets/combined_horizontal_GSM8K_149_250916.png" alt="img1" loading="lazy" style="object-fit:contain;">
-              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">img1</figcaption>
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                Caption for the first image (img1)
+              </figcaption>
             </figure>
           </div>
+        </div>
 
-          <div class="column is-12-mobile is-6-tablet is-4-desktop">
+        <!-- 두 번째 줄: 두 개 이미지 + 공통 캡션 -->
+        <div class="columns is-centered is-variable is-5">
+          <div class="column is-6-tablet is-5-desktop">
             <figure class="image">
               <img src="assets/general_crucial_distributions_overlap2.png" alt="img2" loading="lazy" style="object-fit:contain;">
-              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">img2</figcaption>
             </figure>
           </div>
 
-          <div class="column is-12-mobile is-6-tablet is-4-desktop">
+          <div class="column is-6-tablet is-5-desktop">
             <figure class="image">
               <img src="assets/crucial_distributions_overlap.png" alt="img3" loading="lazy" style="object-fit:contain;">
-              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">img3</figcaption>
             </figure>
           </div>
-
         </div>
+
+        <!-- 공통 캡션 -->
+        <div class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+          Common caption for the two images above (img2 & img3)
+        </div>
+
       </div>
     </section>
+
+
 
     <!-- Result -->
     <section class="section hero is-light">
