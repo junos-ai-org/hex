@@ -278,59 +278,65 @@ TruthfulQA from 28.36\% to 57.46\%. Our results establish a new paradigm for tes
       </div>
     </section>
 
-    <!-- Key contributions -->
-    <section class="mb-10">
-      <div class="rounded-2xl border border-blue-100 bg-blue-50 p-5 sm:p-6">
-        <div class="flex items-center gap-2">
-          <h3 class="font-heading text-lg font-semibold text-blue-900">Key Contributions</h3>
-          <span class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-blue-700">TL;DR</span>
-        </div>
-        <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
-          <li><span class="font-semibold">Limitation Analysis:</span> We identify why common confidence-based schedules (e.g., top-K margin) can catastrophically fail in dLLMs on reasoning tasks (e.g., [AfterEoT] collapse), revealing sensitivity to decoding order.</li>
-          <li><span class="font-semibold">HEX—Test-time Scaling via Hidden Experts:</span> We uncover and exploit a <em>latent mixture</em> of semi-AR experts by marginalizing over block schedules and aggregating via majority vote—introducing a new compute-accuracy knob at inference time. </li>
-          <li><span class="font-semibold">State-of-the-Art, Training-Free:</span> HEX achieves up to <strong>3.56×</strong> gains and surpasses GRPO on GSM8K (88.10%), MATH (40.00%), ARC-C (87.80%), and improves TruthfulQA (57.46%)—all without retraining. </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Approach -->
+    <!-- Key Contributions -->
     <section class="section">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column is-10">
-            <h2 class="title is-3 has-text-centered">Approach</h2>
+            <h2 class="title is-3 has-text-centered">Key Contributions</h2>
 
-            <!-- 좌우 이미지 배치 -->
-            <div class="columns is-variable is-5 is-vcentered">
-              <!-- 왼쪽 -->
-              <div class="column is-6">
-                <figure class="image" style="margin: 0 auto;">
-                  <img src="assets/general_crucial_distributions_overlap2.png" alt="Left figure" loading="lazy">
-                  <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
-                    Left: <code> </code>
-                  </figcaption>
-                </figure>
-              </div>
+            <!-- (선택) 대표 이미지 넣고 싶으면 사용 -->
+            <!--
+            <figure class="image" style="margin: 1rem auto; max-width: 1000px;">
+              <img src="assets/key_contrib.png" alt="Key contributions overview" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
+                Optional: <code>assets/key_contrib.png</code>
+              </figcaption>
+            </figure>
+            -->
 
-              <!-- 오른쪽 -->
-              <div class="column is-6">
-                <figure class="image" style="margin: 0 auto;">
-                  <img src="assets/crucial_distributions_overlap.png" alt="Right figure" loading="lazy">
-                  <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">
-                    Right: <code> </code>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-
-            <div class="content has-text-justified">
-              <p>
-                <!-- We treat semi-autoregressive block schedules as queries to different implicit experts in dLLMs.
-                Sampling multiple schedules (varying block sizes/seeds) and aggregating with a majority vote
-                avoids brittle single-schedule failures and yields robust outputs. -->
-              </p>
+            <div class="content" style="margin-top: 0.75rem;">
+              <ul>
+                <li><b>Limitation Analysis:</b> confidence-based schedules(top-K margin 등)의 취약점과 디코딩 순서 민감도를 분석.</li>
+                <li><b>HEX (Hidden Experts):</b> 이질적인 block schedule을 샘플링하고 다수결로 집계하는 <i>훈련 없이 가능한</i> test-time scaling 제안.</li>
+                <li><b>SOTA without Training:</b> GSM8K 88.10%, MATH 40.00%, ARC-C 87.80%, TruthfulQA 57.46% 달성.</li>
+              </ul>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Approach -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Gallery (Bulma)</h2>
+
+        <div class="columns is-multiline is-variable is-5">
+          <!-- 3열 그리드 느낌: 데스크탑 is-4, 태블릿 is-6, 모바일 full -->
+          <div class="column is-4-tablet is-3-desktop is-12-mobile">
+            <figure class="image">
+              <img src="assets/combined_horizontal_GSM8K_149_250916.png" alt="img1" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">img1</figcaption>
+            </figure>
+          </div>
+
+          <div class="column is-4-tablet is-3-desktop is-12-mobile">
+            <figure class="image">
+              <img src="assets/general_crucial_distributions_overlap2.png" alt="img2" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">img2</figcaption>
+            </figure>
+          </div>
+
+          <div class="column is-4-tablet is-3-desktop is-12-mobile">
+            <figure class="image">
+              <img src="assets/crucial_distributions_overlap.png" alt="img3" loading="lazy">
+              <figcaption class="has-text-grey has-text-centered" style="margin-top:.5rem;">img3</figcaption>
+            </figure>
+          </div>
+
+          <!-- 필요한 만큼 계속 추가 -->
         </div>
       </div>
     </section>
